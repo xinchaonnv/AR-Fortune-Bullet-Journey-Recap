@@ -1,0 +1,9 @@
+{
+  "character": "Orc",
+  "hp": 100,
+  "buff": "None",
+  "time": "0:00",
+  "path": "Goblin Town",
+  "loot": ["Sample Crystal", "Placeholder Tome"],
+  "boss": false
+}
