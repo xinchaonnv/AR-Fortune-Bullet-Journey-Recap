@@ -1,2 +1,0 @@
-# AR-Fortune-Bullet-Journey-Recap
-setup for hosting MindAR content. Each player has their own folder that contains an index.html and a stats.json file. When the page is viewed, the JSON file is loaded and used to populate the AR summary panel.

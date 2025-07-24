@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <title>AR Summary</title>
+  <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a-scene
+    mindar-image="imageTargetSrc: ./assets/targets.mind;"
+    color-space="sRGB"
+    embedded
+    renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false"
+  >
+    <!-- ✅ SINGLE <a-assets> BLOCK -->
+    <a-assets>
+      <img id="banner" src="./assets/summaryscreen.png" />
+      <a-asset-item id="dwarfModel" src="./assets/dawrfAnimated.glb"></a-asset-item>
+      <a-asset-item id="elfModel" src="./assets/elfAnimated.glb"></a-asset-item>
+      <a-asset-item id="orcModel" src="./assets/orcAnimated.glb"></a-asset-item>
+    </a-assets>
+
+    <a-camera position="0 0 0"></a-camera>
+
+    <a-entity mindar-image-target="targetIndex: 0" visible="false">
+      <!-- 📜 Banner -->
+      <a-plane
+        src="#banner"
+        width="1.2"
+        height="1.6"
+        position="0 0 -0.01"
+        material="transparent: true">
+      </a-plane>
+
+      <!-- 🧾 Fantasy Stat Overlay -->
+      <a-entity id="stat-overlay" position="-0.45 0.6 0.01">
+        <a-text id="time" value="Time:" width="1.5" position="0 0 0" color="#2f1804"></a-text>
+        <a-text id="target" value="Target:" width="1.5" position="0.9 0 0" color="#2f1804"></a-text>
+        <a-text id="class" value="Class:" width="1.5" position="0 -0.15 0" color="#2f1804"></a-text>
+        <a-text id="dungeon" value="Dungeon:" width="1.5" position="0.9 -0.15 0" color="#2f1804"></a-text>
+        <a-text id="mob" value="Mob Killed:" width="1.5" position="0 -0.3 0" color="#2f1804"></a-text>
+        <a-text id="chest" value="Chest:" width="1.5" position="0.9 -0.3 0" color="#2f1804"></a-text>
+        <a-text id="boss" value="Boss:" width="1.5" position="0 -0.45 0" color="#2f1804"></a-text>
+        <a-text id="coins" value="Coins:" width="1.5" position="0.9 -0.45 0" color="#2f1804"></a-text>
+      </a-entity>
+
+      <!-- Player Model Container -->
+      <a-entity id="model-anchor"></a-entity>
+    </a-entity>
+  </a-scene>
+
+  <script src="./script.js"></script>
+</body>
+</html>
