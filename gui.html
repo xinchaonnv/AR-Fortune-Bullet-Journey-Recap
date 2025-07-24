@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Summary UI Preview</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* Additional centering for the demo */
+    body { display: flex; align-items: center; justify-content: center; height: 100vh; background: #111; }
+    #preview { position: relative; width: 300px; height: 450px; }
+    #preview img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+    #overlay { 
+      position: absolute; top: 0; left: 0; 
+      width: 100%; height: 100%; 
+      pointer-events: none; 
+      font-family: 'Georgia', serif; 
+    }
+    #overlay .stat { 
+      width: 45%; padding: 8px; 
+      border-radius: 4px; 
+      position: absolute;
+      font-size: 0.9rem;
+    }
+    /* Place each stat */
+    #time    { top: 36%; left: 23%; }
+    #target  { top: 36%; right: -7%; }
+    #class   { top: 49%; left: 23%; }
+    #dungeon { top: 49%; right: -1%; }
+    #mob     { top: 62%; left: 18%; }
+    #chest   { top: 62%; right: -0%; }
+    #boss    { top: 75%; left: 14%; }
+    #coins   { top: 75%; right: -0%; }
+  </style>
+</head>
+<body>
+  <div id="preview">
+    <img src="./assets/summaryscreen.png" alt="Banner Background">
+    <div id="overlay">
+      <div id="time"    class="stat">Time<br><strong>02:14</strong></div>
+      <div id="target"  class="stat">Target<br><strong>Death</strong></div>
+      <div id="class"   class="stat">Class<br><strong>Mage</strong></div>
+      <div id="dungeon" class="stat">Dungeon<br><strong>Goblin Town</strong></div>
+      <div id="mob"     class="stat">Mob Killed<br><strong>0</strong></div>
+      <div id="chest"   class="stat">Chest Collected<br><strong>2/2</strong></div>
+      <div id="boss"    class="stat">Boss Defeated<br><strong>No</strong></div>
+      <div id="coins"   class="stat">Coins Collected<br><strong>1053</strong></div>
+    </div>
+  </div>
+</body>
+</html>
