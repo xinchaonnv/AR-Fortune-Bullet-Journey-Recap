@@ -1,19 +1,20 @@
 import qrcode
 import os
 
-# GitHub Pages base URL for your AR summary project
+# ✅ Customize this with your GitHub Pages URL
 BASE_URL = "https://xinchaonnv.github.io/AR-Fortune-Bullet-Journey-Recap/?player="
 
-# List of player JSON IDs
-PLAYER_IDS = ["player001", "player002", "player003"]  # Extend this as needed
+# ✅ Add your player IDs here
+PLAYER_IDS = ["player001",]
 
-# Output folder for QR codes
-OUTPUT_DIR = "qr-codes"
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+# Create output folder
+output_dir = "qr-codes"
+os.makedirs(output_dir, exist_ok=True)
 
-# Generate QR PNGs for each player
+# Generate QR PNGs
 for player_id in PLAYER_IDS:
     full_url = f"{BASE_URL}{player_id}"
-    qr_img = qrcode.make(full_url)
-    qr_img.save(os.path.join(OUTPUT_DIR, f"{player_id}.png"))
-    print(f"[✓] QR saved for {player_id}: {full_url}")
+    img = qrcode.make(full_url)
+    img_path = os.path.join(output_dir, f"{player_id}.png")
+    img.save(img_path)
+    print(f"[✓] Saved QR for {player_id} → {full_url}")
