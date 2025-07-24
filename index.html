@@ -25,7 +25,7 @@
     <a-camera position="0 0 0"></a-camera>
 
     <a-entity mindar-image-target="targetIndex: 0">
-
+      <!-- Background UI -->
       <a-plane
         src="#banner"
         width="1.2"
@@ -34,6 +34,7 @@
         material="transparent: true">
       </a-plane>
 
+      <!-- Stat Overlay -->
       <a-entity id="stat-overlay" position="-0.45 0.6 0.01">
         <a-text id="time" value="Time:" width="1.5" position="0 0 0" color="#2f1804"></a-text>
         <a-text id="target" value="Target:" width="1.5" position="0.9 0 0" color="#2f1804"></a-text>
@@ -45,10 +46,46 @@
         <a-text id="coins" value="Coins:" width="1.5" position="0.9 -0.45 0" color="#2f1804"></a-text>
       </a-entity>
 
+      <!-- 3D Character -->
       <a-entity id="model-anchor"></a-entity>
     </a-entity>
   </a-scene>
 
-  <script src="./script.js"></script>
+  <!-- ✅ Wrapped Script: Safe DOM Load -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const playerId = params.get('player') || 'player001';
+
+      fetch(`./player-id/${playerId}.json`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('time').setAttribute('value', `Time: ${data.time}`);
+          document.getElementById('target').setAttribute('value', `Target: ${data.target}`);
+          document.getElementById('class').setAttribute('value', `Class: ${data.class}`);
+          document.getElementById('dungeon').setAttribute('value', `Dungeon: ${data.dungeon}`);
+          document.getElementById('mob').setAttribute('value', `Mob Killed: ${data.mob}`);
+          document.getElementById('chest').setAttribute('value', `Chest: ${data.chest}`);
+          document.getElementById('boss').setAttribute('value', `Boss Defeated: ${data.boss}`);
+          document.getElementById('coins').setAttribute('value', `Coins Collected: ${data.coins}`);
+
+          let modelId = '';
+          switch (data.class.toLowerCase()) {
+            case 'mage': modelId = '#elfModel'; break;
+            case 'duelist': modelId = '#dwarfModel'; break;
+            case 'barbarian': modelId = '#orcModel'; break;
+            default: modelId = '#dwarfModel';
+          }
+
+          const model = document.createElement('a-gltf-model');
+          model.setAttribute('src', modelId);
+          model.setAttribute('position', '0 -0.7 0.1');
+          model.setAttribute('scale', '0.3 0.3 0.3');
+          model.setAttribute('rotation', '0 180 0');
+          document.querySelector('#model-anchor').appendChild(model);
+        })
+        .catch(err => console.error('Failed to load player stats:', err));
+    });
+  </script>
 </body>
 </html>
