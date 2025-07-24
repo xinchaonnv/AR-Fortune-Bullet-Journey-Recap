@@ -15,7 +15,6 @@
     renderer="colorManagement: true, physicallyCorrectLights"
     vr-mode-ui="enabled: false"
   >
-    <!-- ✅ SINGLE <a-assets> BLOCK -->
     <a-assets>
       <img id="banner" src="./assets/summaryscreen.png" />
       <a-asset-item id="dwarfModel" src="./assets/dawrfAnimated.glb"></a-asset-item>
@@ -25,8 +24,8 @@
 
     <a-camera position="0 0 0"></a-camera>
 
-    <a-entity mindar-image-target="targetIndex: 0" visible="false">
-      <!-- 📜 Banner -->
+    <a-entity mindar-image-target="targetIndex: 0">
+
       <a-plane
         src="#banner"
         width="1.2"
@@ -35,7 +34,6 @@
         material="transparent: true">
       </a-plane>
 
-      <!-- 🧾 Fantasy Stat Overlay -->
       <a-entity id="stat-overlay" position="-0.45 0.6 0.01">
         <a-text id="time" value="Time:" width="1.5" position="0 0 0" color="#2f1804"></a-text>
         <a-text id="target" value="Target:" width="1.5" position="0.9 0 0" color="#2f1804"></a-text>
@@ -47,7 +45,6 @@
         <a-text id="coins" value="Coins:" width="1.5" position="0.9 -0.45 0" color="#2f1804"></a-text>
       </a-entity>
 
-      <!-- Player Model Container -->
       <a-entity id="model-anchor"></a-entity>
     </a-entity>
   </a-scene>
